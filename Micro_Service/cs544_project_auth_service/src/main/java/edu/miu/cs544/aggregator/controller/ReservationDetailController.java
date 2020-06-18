@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.miu.cs544.aggregator.service.ReservationDetailService;
-import edu.miu.cs544.domain.ERole;
 import edu.miu.cs544.domain.User;
 import edu.miu.cs544.service.UserService;
 import edu.miu.cs544.service.aggregator.response.ReservationDetailResponse;
@@ -36,15 +35,6 @@ public class ReservationDetailController {
 	public ReservationDetailResponse[] getAllByReservationCode(@RequestParam String reservation_code) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.getByUsername(auth.getName());
-		
-		if(user.getRole().getName() == ERole.ROLE_PASSENGER)
-		{
-			return reservationDetailService.getAllByReservationCodeAndPassengerId(reservation_code, user.getPassengerId());
-		}
-		if(user.getRole().getName() == ERole.ROLE_AGENT)
-		{
-			return reservationDetailService.getAllByReservationCodeAndUserEmail(reservation_code, user.getUsername());
-		}
-		return reservationDetailService.getAllByReservationCode(reservation_code);
+		return reservationDetailService.getAllByReservationCodeAndUserRole(reservation_code, user);
 	}
 }
