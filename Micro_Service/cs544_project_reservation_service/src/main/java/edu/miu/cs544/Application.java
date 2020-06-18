@@ -40,10 +40,10 @@ public class Application implements CommandLineRunner {
 		Address residenceAddress4 = new Address("1000N 4th str","Chicago","IL","52554");
         
         /*Passenger*/
-        Passenger passenger1 = new Passenger("Otgonbayar", "Otgonbayar", dateFormat1.parse("08 07, 1987"), "omijiddorj@miu.edu", residenceAddress1);
-        Passenger passenger2 = new Passenger("Nahom", "Berta", dateFormat1.parse("08 07, 1987"), "nberta@miu.edu", residenceAddress2);
-        Passenger passenger3 = new Passenger("Yodit", "Wondaferew ", dateFormat1.parse("08 07, 1987"), "yodit@miu.edu", residenceAddress3);
-        Passenger passenger4 = new Passenger("Thi Le", "Nguyen", dateFormat1.parse("08 07, 1987"), "nguyen@miu.edu", residenceAddress4);
+        Passenger passenger1 = new Passenger("Otgonbayar", "Otgonbayar", dateFormat1.parse("08 07, 1987"), "pass1@miu.edu", residenceAddress1);
+        Passenger passenger2 = new Passenger("Nahom", "Berta", dateFormat1.parse("08 07, 1987"), "pass2@miu.edu", residenceAddress2);
+        Passenger passenger3 = new Passenger("Yodit", "Wondaferew ", dateFormat1.parse("08 07, 1987"), "pass3@miu.edu", residenceAddress3);
+        Passenger passenger4 = new Passenger("Thi Le", "Nguyen", dateFormat1.parse("08 07, 1987"), "pass4@miu.edu", residenceAddress4);
         
         /*ReservationDetails*/ 
         ReservationDetail red1 = new ReservationDetail(1248);
@@ -66,9 +66,9 @@ public class Application implements CommandLineRunner {
         /*Reservation*/
         Reservation reservation1 = new Reservation("123451", passenger1, "omijiddorj@miu.edu", Arrays.asList(red1, red2));
         Reservation reservation2 = new Reservation("123452", passenger1, "nberta@miu.edu", Arrays.asList(red3, red4));
-        Reservation reservation3 = new Reservation("123453", passenger2, "agent1@miu.edu", Arrays.asList(red5, red6));
-        Reservation reservation4 = new Reservation("123454", passenger2, "agent1@miu.edu", Arrays.asList(red7, red8));
-        Reservation reservation5 = new Reservation("123455", passenger3, "agent1@miu.edu", Arrays.asList(red9, red10));
+        Reservation reservation3 = new Reservation("123453", passenger2, "agent@miu.edu", Arrays.asList(red5, red6));
+        Reservation reservation4 = new Reservation("123454", passenger2, "agent@miu.edu", Arrays.asList(red7, red8));
+        Reservation reservation5 = new Reservation("123455", passenger3, "agent@miu.edu", Arrays.asList(red9, red10));
         Reservation reservation6 = new Reservation("123456", passenger3, "admin@miu.edu", Arrays.asList(red11, red12));
         Reservation reservation7 = new Reservation("123457", passenger4, "admin@miu.edu", Arrays.asList(red13, red14));
         Reservation reservation8 = new Reservation("123458", passenger4, "admin@miu.edu", Arrays.asList(red15, red16));

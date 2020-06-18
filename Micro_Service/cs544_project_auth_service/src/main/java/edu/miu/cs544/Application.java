@@ -51,10 +51,10 @@ public class Application implements CommandLineRunner {
         passenger2.setRole(passengerRole);
         passenger3.setRole(passengerRole);
         passenger4.setRole(passengerRole);
-        passenger1.setPassengerId(10000);
-        passenger2.setPassengerId(10001);
-        passenger3.setPassengerId(10002);
-        passenger4.setPassengerId(10003);
+        passenger1.setPassengerId(1);
+        passenger2.setPassengerId(2);
+        passenger3.setPassengerId(3);
+        passenger4.setPassengerId(4);
 
         userRepository.saveAll(Arrays.asList(passenger1, passenger2, passenger3, passenger4, admin, agent1));
     }
