@@ -18,8 +18,8 @@ public class ReservationDetailServiceImpl implements ReservationDetailService {
 	private ReservationDetailRepository reservationDetailRepository;
 	
 	@Override
-	public List<ReservationDetailResponse> getAllByReservationCode(String code) {
-		return reservationDetailRepository.findByReservationCode(code)
+	public List<ReservationDetailResponse> getAllByReservationCode(String reservation_code) {
+		return reservationDetailRepository.findByReservationCode(reservation_code)
 				.parallelStream()
 				.map(detail -> new ReservationDetailResponse(detail))
 				.collect(Collectors.toList());
@@ -28,6 +28,24 @@ public class ReservationDetailServiceImpl implements ReservationDetailService {
 	@Override
 	public List<ReservationDetailResponse> getAll() {
 		return reservationDetailRepository.findAll()
+				.parallelStream()
+				.map(detail -> new ReservationDetailResponse(detail))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<ReservationDetailResponse> getAllByReservationCodeAndPassengerId(String reservation_code,
+			Integer passenger_id) {
+		return reservationDetailRepository.findByReservationCodeAndReservationPassengerId(reservation_code, passenger_id)
+				.parallelStream()
+				.map(detail -> new ReservationDetailResponse(detail))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<ReservationDetailResponse> getAllByReservationCodeAndUserEmail(String reservation_code,
+			String user_email) {
+		return reservationDetailRepository.findByReservationCodeAndReservationUserEmail(reservation_code, user_email)
 				.parallelStream()
 				.map(detail -> new ReservationDetailResponse(detail))
 				.collect(Collectors.toList());

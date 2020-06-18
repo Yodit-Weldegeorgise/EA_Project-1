@@ -113,7 +113,4 @@ public class ReservationServiceImpl implements ReservationService {
 		return restTemplate.getForObject(lookupUrlFor(reservationServiceName) 
 				+ "/reservations?code="+code+"&user_email="+user_email, ReservationResponse.class);
 	}
-
-	
-
 }

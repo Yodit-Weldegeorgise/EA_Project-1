@@ -64,9 +64,9 @@ public class Application implements CommandLineRunner {
         ReservationDetail red16 = new ReservationDetail(1248);
         
         /*Reservation*/
-        Reservation reservation1 = new Reservation("123451", passenger1, "omijiddorj@miu.edu", Arrays.asList(red1, red2));
-        Reservation reservation2 = new Reservation("123452", passenger1, "nberta@miu.edu", Arrays.asList(red3, red4));
-        Reservation reservation3 = new Reservation("123453", passenger2, "agent@miu.edu", Arrays.asList(red5, red6));
+        Reservation reservation1 = new Reservation("123451", passenger1, "pass1@miu.edu", Arrays.asList(red1, red2));
+        Reservation reservation2 = new Reservation("123452", passenger1, "agent@miu.edu", Arrays.asList(red3, red4));
+        Reservation reservation3 = new Reservation("123453", passenger2, "pass2@miu.edu", Arrays.asList(red5, red6));
         Reservation reservation4 = new Reservation("123454", passenger2, "agent@miu.edu", Arrays.asList(red7, red8));
         Reservation reservation5 = new Reservation("123455", passenger3, "agent@miu.edu", Arrays.asList(red9, red10));
         Reservation reservation6 = new Reservation("123456", passenger3, "admin@miu.edu", Arrays.asList(red11, red12));
