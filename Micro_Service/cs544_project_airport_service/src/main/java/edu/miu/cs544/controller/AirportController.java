@@ -6,7 +6,6 @@ import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,23 +38,23 @@ public class AirportController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Collection<AirportResponse>> saveAirports(@RequestBody Collection<AirportRequest> airports) {
-		return ResponseEntity.ok(airportService.saveAll(airports));
+	public Collection<AirportResponse> saveAirports(@RequestBody Collection<AirportRequest> airports) {
+		return airportService.saveAll(airports);
 	}
 	
 	@PutMapping("/{code}")
-	public ResponseEntity<AirportResponse> putAirport(@RequestBody AirportRequest airportRequest, @PathVariable String code) {
+	public AirportResponse putAirport(@RequestBody AirportRequest airportRequest, @PathVariable String code) {
 		try {
-			return ResponseEntity.ok(airportService.put(airportRequest, code));
+			return airportService.put(airportRequest, code);
 		} catch (IllegalArgumentException ex) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
 		}
 	}
 	
 	@DeleteMapping("/{code}")
-	public ResponseEntity<AirportResponse> deleteAirport(@PathVariable String code) {
+	public AirportResponse deleteAirport(@PathVariable String code) {
 		try {
-			return ResponseEntity.ok(airportService.deleteAirport(code));
+			return airportService.deleteAirport(code);
 		} catch (NoSuchElementException ex) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
 		} catch (IllegalArgumentException ex) {

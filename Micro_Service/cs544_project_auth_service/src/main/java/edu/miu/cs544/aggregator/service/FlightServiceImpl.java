@@ -1,10 +1,18 @@
 package edu.miu.cs544.aggregator.service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import edu.miu.cs544.service.aggregator.response.AirportResponse;
+import edu.miu.cs544.service.request.FlightRequest;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -40,11 +48,6 @@ public class FlightServiceImpl implements FlightService {
 		return restTemplate.getForObject(lookupUrlFor(airportServiceName) + "/flights", List.class);
 	}
 
-	@Override
-	public void deleteFlight(Integer flightNumber) {
-		restTemplate.delete(lookupUrlFor(airportServiceName) + "/flights/" + flightNumber);
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<FlightResponse> getAllByNumbers(List<Integer> numbers) {
@@ -53,5 +56,31 @@ public class FlightServiceImpl implements FlightService {
                 .collect(Collectors.joining(","));
 		return restTemplate.getForObject(lookupUrlFor(airportServiceName) + "/flights?numbers="+numbersCommaSeparated, List.class);
 	}
+
+	@Override
+	public Collection<FlightResponse> saveAll(Collection<FlightRequest> flights) {
+		HttpEntity<String> request = prepareHttpRequest(flights);
+		return restTemplate.postForObject(lookupUrlFor(airportServiceName) + "/flights", request, Collection.class);
+	}
+
+	@Override
+	public FlightResponse put(FlightRequest flightRequest, Integer flightNumber) {
+		HttpEntity<String> request = prepareHttpRequest(flightRequest);
+		return restTemplate.exchange(lookupUrlFor(airportServiceName) + "/flights/" + flightNumber, HttpMethod.PUT,request, FlightResponse.class).getBody();
+	}
+
+	@Override
+	public void deleteFlight(Integer flightNumber) {
+		restTemplate.delete(lookupUrlFor(airportServiceName) + "/flights/" + flightNumber);
+	}
+
+	private HttpEntity<String> prepareHttpRequest(Object token) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		JSONObject json = new JSONObject(token);
+		HttpEntity<String> request = new HttpEntity<>(json.toString(), headers);
+		return request;
+	}
+
 
 }

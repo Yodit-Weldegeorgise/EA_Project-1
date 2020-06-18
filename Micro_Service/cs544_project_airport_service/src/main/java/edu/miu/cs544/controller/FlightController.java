@@ -7,7 +7,6 @@ import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,27 +44,27 @@ public class FlightController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Collection<FlightResponse>> saveFlights(@RequestBody Collection<FlightRequest> flights) {
+	public Collection<FlightResponse> saveFlights(@RequestBody Collection<FlightRequest> flights) {
 		try {
-			return ResponseEntity.ok(flightService.saveAll(flights));
+			return flightService.saveAll(flights);
 		} catch (IllegalArgumentException ex) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
 		}
 	}
 	
 	@PutMapping("/{flightNumber}")
-	public ResponseEntity<FlightResponse> putFlights(@RequestBody FlightRequest flightRequest, @PathVariable Integer flightNumber) {
+	public FlightResponse putFlights(@RequestBody FlightRequest flightRequest, @PathVariable Integer flightNumber) {
 		try {
-			return ResponseEntity.ok(flightService.put(flightRequest, flightNumber));
+			return flightService.put(flightRequest, flightNumber);
 		} catch (IllegalArgumentException ex) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
 		}
 	}
 	
 	@DeleteMapping("/{flightNumber}")
-	public ResponseEntity<FlightResponse> deleteFlight(@PathVariable Integer flightNumber) {
+	public FlightResponse deleteFlight(@PathVariable Integer flightNumber) {
 		try {
-			return ResponseEntity.ok(flightService.deleteFlight(flightNumber));
+			return flightService.deleteFlight(flightNumber);
 		} catch (NoSuchElementException ex) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
 		}
