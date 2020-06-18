@@ -8,6 +8,7 @@ import edu.miu.cs544.service.request.AirlineRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import edu.miu.cs544.aggregator.service.AirlineService;
@@ -36,17 +37,20 @@ public class AirlineController {
 	}
 
 	@PostMapping
-	public ResponseEntity<?> saveAirlines(@RequestBody Collection<AirlineRequest> airlines) {
-		return ResponseEntity.ok(airlineService.saveAll(airlines));
+	@PreAuthorize("hasRole('ADMIN')")
+	public Collection<AirlineResponse> saveAirlines(@RequestBody Collection<AirlineRequest> airlines) {
+		return airlineService.saveAll(airlines);
 	}
 
 	@PutMapping("/{code}")
-	public ResponseEntity<?> putAirline(@RequestBody AirlineRequest airlineRequest, @PathVariable String code) {
-		return ResponseEntity.ok(airlineService.put(airlineRequest, code));
+	@PreAuthorize("hasRole('ADMIN')")
+	public AirlineResponse putAirline(@RequestBody AirlineRequest airlineRequest, @PathVariable String code) {
+		return airlineService.put(airlineRequest, code);
 	}
 
 	@DeleteMapping("/{code}")
-	public ResponseEntity<?> deleteAirline(@PathVariable String code) {
-		return ResponseEntity.ok(airlineService.deleteAirline(code));
+	@PreAuthorize("hasRole('ADMIN')")
+	public AirlineResponse deleteAirline(@PathVariable String code) {
+		return airlineService.deleteAirline(code);
 	}
 }

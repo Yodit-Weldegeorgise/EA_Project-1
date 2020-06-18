@@ -11,6 +11,7 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -51,6 +52,18 @@ public class ControllerAdviceExceptionHandler extends ResponseEntityExceptionHan
 		logger.info("End of EmailAlreadyExistException");
 
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.CONFLICT);
+	}
+
+	@ExceptionHandler(HttpClientErrorException.class)
+	public ResponseEntity<ExceptionResponse> handleHttpClientErrorException(HttpClientErrorException ex) {
+		logger.info("Start of ResponseStatusException");
+		String message = ex.getResponseBodyAsString();
+		System.out.println(ex.getRootCause());
+		Integer statusCode = ex.getStatusCode().value();
+		String statusName = ex.getStatusCode().name();
+		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), statusCode, statusName, message);
+		logger.info("End of ResponseStatusException");
+		return new ResponseEntity<>(exceptionResponse, ex.getStatusCode());
 	}
 
 	@ExceptionHandler(AccessDeniedException.class)

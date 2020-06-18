@@ -49,22 +49,20 @@ public class AirlineServiceImpl implements AirlineService{
 	}
 
     @Override
-    public ResponseEntity<?> saveAll(Collection<AirlineRequest> airlines) {
+    public Collection<AirlineResponse>  saveAll(Collection<AirlineRequest> airlines) {
         HttpEntity<String> request = prepareHttpRequest(airlines);
-        return restTemplate.postForEntity(lookupUrlFor(airportServiceName) + "/airlines/", request, ResponseEntity.class);
+        return restTemplate.postForObject(lookupUrlFor(airportServiceName) + "/airlines", request, Collection.class);
     }
 
     @Override
-    public ResponseEntity<?> put(AirlineRequest airlineRequest, String code) {
+    public AirlineResponse put(AirlineRequest airlineRequest, String code) {
         HttpEntity<String> request = prepareHttpRequest(airlineRequest);
-//        restTemplate.exchange()
-//        restTemplate.putFo(lookupUrlFor(airportServiceName) + "/airlines/" + code, request, AirlineResponse.class);
-        return null;
+        return restTemplate.exchange(lookupUrlFor(airportServiceName) + "/airlines/" + code, HttpMethod.PUT,request, AirlineResponse.class).getBody();
     }
 
     @Override
-    public ResponseEntity<?> deleteAirline(String code) {
-        return restTemplate.exchange(lookupUrlFor(airportServiceName) + "/airlines/" + code, HttpMethod.DELETE, new HttpEntity<>(""), ResponseEntity.class);
+    public AirlineResponse deleteAirline(String code) {
+        return restTemplate.exchange(lookupUrlFor(airportServiceName) + "/airlines/" + code, HttpMethod.DELETE, new HttpEntity<>(""), AirlineResponse.class).getBody();
     }
 
     private HttpEntity<String> prepareHttpRequest(Object token) {

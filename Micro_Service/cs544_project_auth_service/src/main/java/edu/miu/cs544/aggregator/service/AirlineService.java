@@ -12,9 +12,9 @@ public interface AirlineService {
 	List<AirlineResponse> getAll();
 	List<AirlineResponse> getAllByDepartureAirportCode(String departure_airport_code);
 
-	ResponseEntity<?> saveAll(Collection<AirlineRequest> airlines);
+	Collection<AirlineResponse> saveAll(Collection<AirlineRequest> airlines);
 
-	ResponseEntity<?> put(AirlineRequest airlineRequest, String code);
+	AirlineResponse put(AirlineRequest airlineRequest, String code);
 
-	ResponseEntity<?> deleteAirline(String code);
+	AirlineResponse deleteAirline(String code);
 }

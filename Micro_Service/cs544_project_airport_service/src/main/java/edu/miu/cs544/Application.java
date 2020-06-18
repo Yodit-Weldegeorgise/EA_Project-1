@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
+import edu.miu.cs544.repository.AirlineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -24,6 +25,9 @@ public class Application implements CommandLineRunner {
 	
 	@Autowired
     private FlightRepository flightRepository;
+
+	@Autowired
+    private AirlineRepository airlineRepository;
 	
 	private DateFormat dateFormat = new SimpleDateFormat("MM dd, yyyy hh:mm");
 	
@@ -39,6 +43,9 @@ public class Application implements CommandLineRunner {
         Airline airline2 = new Airline("KAL","Korean Air", "AAAAAAAAAAAAAAAAAA");
         Airline airline3 = new Airline("OM","MIAT-MONGOLIAN AIRLINES", "AAAAAAAAAAAAAAAAAA");
         Airline airline4 = new Airline("OM1","MIAT-MONGOLIAN AIRLINES", "AAAAAAAAAAAAAAAAAA");
+        Airline airline5 = new Airline("OM2","MIAT-MONGOLIAN AIRLINES", "AAAAAAAAAAAAAAAAAA");
+        Airline airline6 = new Airline("OM3","MIAT-MONGOLIAN AIRLINES", "AAAAAAAAAAAAAAAAAA");
+        Airline airline7 = new Airline("OM4","MIAT-MONGOLIAN AIRLINES", "AAAAAAAAAAAAAAAAAA");
         
         /* Address */
         Address address1 = new Address("1000N 4th str","Fairfield","IA","52557");
@@ -75,6 +82,7 @@ public class Application implements CommandLineRunner {
         Flight flight6 = new Flight(1253, 500, airline3, nrt, sin, dateFormat.parse("05 21, 2020 23:00"), dateFormat.parse("05 21, 2020 23:00"));
  
         flightRepository.saveAll(Arrays.asList(flight1, flight2, flight3, flight4, flight5, flight6));
+        airlineRepository.saveAll(Arrays.asList(airline4, airline5, airline6, airline7));
 	}
 	
 	@Bean
