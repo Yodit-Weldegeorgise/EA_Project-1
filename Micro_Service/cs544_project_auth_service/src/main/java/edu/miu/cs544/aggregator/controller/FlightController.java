@@ -1,19 +1,19 @@
 package edu.miu.cs544.aggregator.controller;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import edu.miu.cs544.aggregator.service.FlightService;
 import edu.miu.cs544.aggregator.service.ReservationDetailService;
 import edu.miu.cs544.service.aggregator.response.FlightResponse;
 import edu.miu.cs544.service.aggregator.response.ReservationDetailResponse;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/flights")
@@ -40,5 +40,10 @@ public class FlightController {
 		List<Integer> flightNumbers = Stream.of(details)
 				.parallel().map(detail -> detail.getFlightNumber()).collect(Collectors.toList());
 		return flightService.getAllByNumbers(flightNumbers);
+	}
+
+	@DeleteMapping("/{flightNumber}")
+	public void deleteFlight(@PathVariable Integer flightNumber) {
+		flightService.deleteFlight(flightNumber);
 	}
 }

@@ -9,4 +9,6 @@ public interface FlightService {
 	FlightResponse getByNumber(Integer number);
 	List<FlightResponse> getAllByNumbers(List<Integer> numbers);
 	List<FlightResponse> getAll();
+
+    void deleteFlight(Integer flightNumber);
 }

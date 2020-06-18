@@ -3,11 +3,8 @@ package edu.miu.cs544.service;
 import java.util.List;
 
 import edu.miu.cs544.service.response.ReservationResponse;
-<<<<<<< Updated upstream
 import edu.miu.cs544.service.response.TicketResponseAndEmailScheduleRequest;
-=======
-import edu.miu.cs544.service.response.TicketsAndEmailScheduleRequest;
->>>>>>> Stashed changes
+
 
 public interface ReservationService {
 	ReservationResponse getByCode(String code);
@@ -20,9 +17,6 @@ public interface ReservationService {
 	List<ReservationResponse> getAllByUserEmail(String userEmail);
 	ReservationResponse makeReservation(Integer passengerId, List<Integer> flights);
 	List<Integer> getAllFlightsByReservationCode(String code);
-<<<<<<< Updated upstream
 	TicketResponseAndEmailScheduleRequest finalizeReservation(String code);
-=======
-	TicketsAndEmailScheduleRequest finalizeReservation(String code);
->>>>>>> Stashed changes
+
 }

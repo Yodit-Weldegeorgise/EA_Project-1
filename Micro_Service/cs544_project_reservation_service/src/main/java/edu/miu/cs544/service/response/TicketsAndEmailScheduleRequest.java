@@ -2,8 +2,6 @@ package edu.miu.cs544.service.response;
 
 import java.util.List;
 
-import edu.miu.cs544.domain.Passenger;
-
 public class TicketsAndEmailScheduleRequest {
 	
 	private List<TicketResponse> tickets;

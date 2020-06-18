@@ -40,6 +40,11 @@ public class FlightServiceImpl implements FlightService {
 		return restTemplate.getForObject(lookupUrlFor(airportServiceName) + "/flights", List.class);
 	}
 
+	@Override
+	public void deleteFlight(Integer flightNumber) {
+		restTemplate.delete(lookupUrlFor(airportServiceName) + "/flights/" + flightNumber);
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<FlightResponse> getAllByNumbers(List<Integer> numbers) {

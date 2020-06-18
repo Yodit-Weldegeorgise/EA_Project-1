@@ -24,17 +24,7 @@ public class TicketServiceImpl implements TicketService {
 
 	@Autowired
 	private ReservationRepository reservationRepository;
-	
-	public Long makeTicketNumber() {
-		Long ticketNumber = Math.round(Math.random() * Math.pow(10, 20));
-		if (ticketNumber < Math.pow(10, 20)) makeTicketNumber();
-		Ticket ticket = ticketRepository.findByNumber(ticketNumber);
-		if (ticket != null) {
-			return makeTicketNumber();
-		}
-		return ticketNumber;	
-	}
-	
+		
 	public List<Ticket> saveAll(List<Ticket> tickets) {
 		tickets = ticketRepository.saveAll(tickets);
 		return tickets;
@@ -62,4 +52,23 @@ public class TicketServiceImpl implements TicketService {
 				.map(ticket -> new TicketResponse(ticket))
 				.collect(Collectors.toList());
 	}
+	
+	private static final String[] digits = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+	
+	private String getRandomDigit() {
+		return digits[(int) Math.floor(Math.random() * 10)];
+	}
+	
+	private String makeTicketNumber() {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < 20; i++) sb.append(getRandomDigit());
+		String ticketNumber = sb.toString();
+		Optional<Ticket> ticket = ticketRepository.findByNumber(ticketNumber);
+		if (ticket.isPresent()) {
+			return makeTicketNumber();
+		}
+		System.out.println(ticketNumber);
+		return ticketNumber;	
+	}
+	
 }

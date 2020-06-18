@@ -58,9 +58,17 @@ public class AirportServiceImpl implements AirportService {
 
 	@Override
 	public AirportResponse put(AirportRequest airportRequest, String code) {
+		if (!airportRequest.getCode().equals(code)) {
+			throw new IllegalArgumentException("Code has to match with code in the BODY");
+		}
+		if (code.length() != 3) {
+			throw new IllegalArgumentException("Code length has to be 3 chars");
+		}
 		Airport airport = airportRepository.findByCode(code);
 		if (airport == null) {
-			airportRepository.save(new Airport(airportRequest));
+			airport = new Airport(airportRequest);
+			airportRepository.save(airport);
+
 		} else {
 			airport.setAddress(new Address(airportRequest.getAddress()));
 			airport.setCode(airportRequest.getCode());

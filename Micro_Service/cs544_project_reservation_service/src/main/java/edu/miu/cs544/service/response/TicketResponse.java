@@ -4,7 +4,7 @@ import edu.miu.cs544.domain.Ticket;
 
 public class TicketResponse {
 	private Integer id;
-	private Long number;
+	private String number;
 	private ReservationDetailResponse reservationDetail;
 	
 	public TicketResponse() {
@@ -19,13 +19,13 @@ public class TicketResponse {
 		}
 	}
 	
-	public TicketResponse(Long number, ReservationDetailResponse reservationDetail) {
+	public TicketResponse(String number, ReservationDetailResponse reservationDetail) {
 		super();
 		this.number = number;
 		this.reservationDetail = reservationDetail;
 	}
 
-	public TicketResponse(Integer id, Long number, ReservationDetailResponse reservationDetail) {
+	public TicketResponse(Integer id, String number, ReservationDetailResponse reservationDetail) {
 		super();
 		this.id = id;
 		this.number = number;
@@ -38,10 +38,10 @@ public class TicketResponse {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Long getNumber() {
+	public String getNumber() {
 		return number;
 	}
-	public void setNumber(Long number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 	public ReservationDetailResponse getReservationDetail() {

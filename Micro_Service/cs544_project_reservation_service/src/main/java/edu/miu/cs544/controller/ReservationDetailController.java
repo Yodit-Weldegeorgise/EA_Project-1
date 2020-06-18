@@ -11,7 +11,7 @@ import edu.miu.cs544.service.ReservationDetailService;
 import edu.miu.cs544.service.response.ReservationDetailResponse;
 
 @RestController
-@RequestMapping("/reservationDetails")
+@RequestMapping("/reservations/details")
 public class ReservationDetailController {
 	@Autowired
 	private ReservationDetailService reservationDetailService;

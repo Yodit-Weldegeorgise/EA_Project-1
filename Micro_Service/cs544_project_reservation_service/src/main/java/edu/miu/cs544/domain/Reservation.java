@@ -1,6 +1,7 @@
 package edu.miu.cs544.domain;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 
 import edu.miu.cs544.util.Constant.ReservationStatus;
 
@@ -34,8 +34,7 @@ public class Reservation {
 	private String userEmail;
 	
 	@OneToMany(mappedBy = "reservation", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-	@OrderBy("flight.departureDate ASC")
-	private List<ReservationDetail> reservationDetails = new ArrayList<ReservationDetail>();
+	private Collection<ReservationDetail> reservationDetails = new ArrayList<ReservationDetail>();
 	
 	public Reservation() {
 		super();
@@ -81,11 +80,11 @@ public class Reservation {
 		this.passenger = passenger;
 	}
 	
-	public List<ReservationDetail> getReservationDetails() {
-		return Collections.unmodifiableList(reservationDetails);
+	public Collection<ReservationDetail> getReservationDetails() {
+		return Collections.unmodifiableCollection(reservationDetails);
   }
 	
-	public void setReservationDetails(List<ReservationDetail> reservationDetails) {
+	public void setReservationDetails(Collection<ReservationDetail> reservationDetails) {
 		this.reservationDetails = reservationDetails;
 	}
 	

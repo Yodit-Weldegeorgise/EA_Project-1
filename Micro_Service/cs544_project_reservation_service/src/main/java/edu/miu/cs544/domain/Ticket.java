@@ -15,8 +15,8 @@ public class Ticket {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(unique = true)
-	private Long number;
+	@Column(unique = true, length = 20)
+	private String number;
 	
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
 	@JoinColumn
@@ -26,7 +26,7 @@ public class Ticket {
 		super();
 	}
 	
-	public Ticket(Long number, ReservationDetail reservationDetail) {
+	public Ticket(String number, ReservationDetail reservationDetail) {
 		super();
 		this.number = number;
 		ReservationDetail = reservationDetail;
@@ -38,10 +38,10 @@ public class Ticket {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Long getNumber() {
+	public String getNumber() {
 		return number;
 	}
-	public void setNumber(Long number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 	public ReservationDetail getReservationDetail() {

@@ -3,7 +3,6 @@ package edu.miu.cs544.service.response;
 import edu.miu.cs544.domain.Address;
 
 public class AddressResponse {
-	private Integer id;
 	private String street;
 	private String city;
 	private String state;
@@ -16,7 +15,6 @@ public class AddressResponse {
 	public AddressResponse(Address address) {
 		super();
 		if(address != null) {
-			this.id = address.getId();
 			this.street = address.getStreet();
 			this.city = address.getCity();
 			this.state = address.getState();
@@ -34,19 +32,12 @@ public class AddressResponse {
 
 	public AddressResponse(Integer id, String street, String city, String state, String zip) {
 		super();
-		this.id = id;
 		this.street = street;
 		this.city = city;
 		this.state = state;
 		this.zip = zip;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
 	public String getStreet() {
 		return street;
 	}

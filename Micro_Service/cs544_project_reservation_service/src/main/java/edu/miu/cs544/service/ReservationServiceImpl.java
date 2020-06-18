@@ -1,6 +1,5 @@
 package edu.miu.cs544.service;
 
-
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -122,11 +121,11 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Override
 	public ReservationResponse getByCodeAndPassengerId(String code, Integer passenger_id) {
-		return new ReservationResponse(reservationRepository.findByCodeAndPassengerId(code, passenger_id));
+		return new ReservationResponse(reservationRepository.findByCodeAndPassengerId(code, passenger_id).get());
 	}
 
 	@Override
 	public ReservationResponse getByCodeAndUserEmail(String code, String user_email) {
-		return new ReservationResponse(reservationRepository.findByCodeAndUserEmail(code, user_email));
+		return new ReservationResponse(reservationRepository.findByCodeAndUserEmail(code, user_email).get());
 	}
 }

@@ -38,24 +38,33 @@ public class Application implements CommandLineRunner {
         Airline airline1 = new Airline("UA","United Airlines", "AAAAAAAAAAAAAAAAAA");
         Airline airline2 = new Airline("KAL","Korean Air", "AAAAAAAAAAAAAAAAAA");
         Airline airline3 = new Airline("OM","MIAT-MONGOLIAN AIRLINES", "AAAAAAAAAAAAAAAAAA");
+        Airline airline4 = new Airline("OM1","MIAT-MONGOLIAN AIRLINES", "AAAAAAAAAAAAAAAAAA");
         
         /* Address */
         Address address1 = new Address("1000N 4th str","Fairfield","IA","52557");
         Address address2 = new Address("1000N 4th str","Chicago","IL","52557");
         Address address3 = new Address("1000N 4th str","Chicago","IL","52556");
+        Address address4 = new Address("1000N 4th str","Fairfield","IA","52557");
+        Address address5 = new Address("1000N 4th str","Chicago","IL","52557");
+        Address address6 = new Address("1000N 4th str","Chicago","IL","52556");
+        Address address7 = new Address("1000N 4th str","Fairfield","IA","52557");
+        Address address8 = new Address("1000N 4th str","Chicago","IL","52557");
+        Address address9 = new Address("1000N 4th str","Chicago","IL","52556");
+        Address address10 = new Address("1000N 4th str","Fairfield","IA","52557");
+        Address address11 = new Address("1000N 4th str","Chicago","IL","52557");
 
         /* Airport*/
         Airport cid = new Airport("CID", "Eastern Iowa Airport", address1);
         Airport ams = new Airport("AMS", "Schiphol", address2);
         Airport lhr = new Airport("LHR", "London Heathrow", address3);
-        Airport fra = new Airport("FRA", "Frankfurt International Airport", address1);
-        Airport dtw = new Airport("DTW", "Detroid City", address2);
-        Airport ord = new Airport("ORD", "Chicago O'hare International", address3);
-        Airport lax = new Airport("LAX", "Los Angeles International", address1);
-        Airport jfk = new Airport("JFK", "John F. Kennedy International", address2);
-        Airport nrt = new Airport("NRT", "Narita International Airport", address3);
-        Airport syd = new Airport("SYD", "Kingsford Smith", address1);
-        Airport sin = new Airport("SIN", "Changi Airport", address2);
+        Airport fra = new Airport("FRA", "Frankfurt International Airport", address4);
+        Airport dtw = new Airport("DTW", "Detroid City", address5);
+        Airport ord = new Airport("ORD", "Chicago O'hare International", address6);
+        Airport lax = new Airport("LAX", "Los Angeles International", address7);
+        Airport jfk = new Airport("JFK", "John F. Kennedy International", address8);
+        Airport nrt = new Airport("NRT", "Narita International Airport", address9);
+        Airport syd = new Airport("SYD", "Kingsford Smith", address10);
+        Airport sin = new Airport("SIN", "Changi Airport", address11);
 
         /* Flight */
         Flight flight1 = new Flight(1248, 500, airline1, cid, ord, dateFormat.parse("05 21, 2020 23:00"), dateFormat.parse("05 21, 2020 23:00"));

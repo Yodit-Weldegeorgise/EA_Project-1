@@ -63,17 +63,19 @@ public class AirlineServiceImpl implements AirlineService {
 
 	@Override
 	public AirlineResponse put(AirlineRequest airlineRequest, String code) {
+		if (!airlineRequest.getCode().equals(code))
+			throw new IllegalArgumentException("Code has to be match with code in the body");
 		Airline airline = airlineRepository.findByCode(code);
 
 		if (airline == null) {
-			airlineRepository.save(new Airline(airlineRequest));
+			airline = new Airline(airlineRequest);
 		} else {
 			airline.setCode(airlineRequest.getCode());
 			airline.setName(airlineRequest.getName());
 			airline.setHistory(airlineRequest.getHistory());
-			airlineRepository.save(airline);
 		}
 
+		airlineRepository.save(airline);
 		return new AirlineResponse(airline);
 	}
 
