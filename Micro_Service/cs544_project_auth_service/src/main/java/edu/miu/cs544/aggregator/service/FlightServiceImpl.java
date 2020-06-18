@@ -82,5 +82,11 @@ public class FlightServiceImpl implements FlightService {
 		return request;
 	}
 
+	//http://localhost:8081/flights/available?departure_date=05/21/2020&departure_airport=CID&arrival_airport=ORD
+		@Override
+		public List<FlightResponse> getDepartureAndDestination(Date departure_date, String departure_airport, String arrival_airport) {
+			return restTemplate.getForObject(lookupUrlFor(airportServiceName)+"/flights/available?departure_date="+departure_date+"&"+
+							"departure_airport="+departure_airport+"&"+"arrival_airport="+arrival_airport,List.class);
+		}
 
 }

@@ -70,5 +70,14 @@ public class FlightController {
 	public void deleteFlight(@PathVariable Integer flightNumber) {
 		flightService.deleteFlight(flightNumber);
 	}
+	@GetMapping("/available")
+	public List<FlightResponse> getAllflightBetweenDepartureAndDestinationForADate(@RequestParam Date departure_date,
+																				   @RequestParam String departure_airport,
+																				   @RequestParam String arrival_airport
+	)
+	{
+		System.out.println(departure_date);
+		return flightService.getDepartureAndDestination(departure_date,departure_airport,arrival_airport);
 
+	}
 }

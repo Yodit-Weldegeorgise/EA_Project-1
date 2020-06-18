@@ -17,4 +17,6 @@ public interface FlightService {
     FlightResponse put(FlightRequest flightRequest, Integer flightNumber);
 
 	Collection<FlightResponse> saveAll(Collection<FlightRequest> flights);
+
+	List<FlightResponse> getDepartureAndDestination(Date departure_date, String departure_airport, String arrival_airport);
 }
