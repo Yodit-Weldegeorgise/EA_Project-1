@@ -10,4 +10,6 @@ import edu.miu.cs544.domain.ReservationDetail;
 @Repository
 public interface ReservationDetailRepository extends JpaRepository<ReservationDetail, Integer> {
 	List<ReservationDetail> findByReservationCode(String code);
+	List<ReservationDetail> findByReservationCodeAndReservationPassengerId(String code, Integer passenger_id);
+	List<ReservationDetail> findByReservationCodeAndReservationUserEmail(String code, String user_email);
 }

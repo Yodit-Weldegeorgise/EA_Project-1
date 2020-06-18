@@ -2,17 +2,14 @@ package edu.miu.cs544.aggregator.controller;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import edu.miu.cs544.service.request.AirportRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import edu.miu.cs544.aggregator.service.AirportService;
 import edu.miu.cs544.service.aggregator.response.AirportResponse;
-import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/airports")
